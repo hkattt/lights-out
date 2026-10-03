@@ -19,6 +19,8 @@ GAME_NAME was created for the ANU CSSA Game Jam 2026.
 ## References
 - 2D Grid-based movement: https://www.peanuts-code.com/en/tutorials/gd0010_2d_grid_based_movement/
 - Tilemap: https://www.peanuts-code.com/en/tutorials/gd0024_tilemaplayer/
+- 2D lighting: https://youtu.be/AAPqEebFV-E?si=taiL4OO5CvJq3gYX
+- Fog of war: https://youtu.be/zkMSbQoUd9o?si=XAQUBIPCQUSodRTy
 
 ## Assets
 - Hexnay's Rougelike Tiles. Licence: CC0 1.0 Universal. Retrieved from: https://hexany-ives.itch.io/hexanys-roguelike-tiles

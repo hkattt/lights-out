@@ -10,6 +10,17 @@ region = Rect2(0, 0, 16, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q5p1p"]
 size = Vector2(16, 16)
 
+[sub_resource type="Gradient" id="Gradient_cuyo6"]
+offsets = PackedFloat32Array(0, 0.1179941, 0.21238938, 0.36873156, 0.58702064, 0.71091443)
+colors = PackedColorArray(1, 1, 1, 1, 0.72199166, 0.72199166, 0.72199166, 1, 0.37715977, 0.37715977, 0.37715977, 1, 0.120512605, 0.120512605, 0.120512605, 1, 0.038439356, 0.038439356, 0.038439356, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cuyo6"]
+gradient = SubResource("Gradient_cuyo6")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [node name="Character" type="CharacterBody2D" unique_id=409874960]
 script = ExtResource("1_cuyo6")
 
@@ -27,3 +38,7 @@ position = Vector2(8, 8)
 target_position = Vector2(16, 0)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=370175038]
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1291971418]
+position = Vector2(8, 8)
+texture = SubResource("GradientTexture2D_cuyo6")
