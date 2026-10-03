@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://dl2rclb50xt2d"]
+
+[ext_resource type="Texture2D" uid="uid://d1h41a71e1whj" path="res://assets/tiles/creatures_transparent.png" id="1_6nn2t"]
+[ext_resource type="Script" uid="uid://bqwgeu4pfg55x" path="res://scenes/character/character.gd" id="1_cuyo6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y1xys"]
+atlas = ExtResource("1_6nn2t")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q5p1p"]
+size = Vector2(16, 16)
+
+[node name="Character" type="CharacterBody2D" unique_id=409874960]
+script = ExtResource("1_cuyo6")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=663590353]
+texture_filter = 1
+texture = SubResource("AtlasTexture_y1xys")
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1435480319]
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_q5p1p")
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=1732132139]
+position = Vector2(8, 8)
+target_position = Vector2(16, 0)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=370175038]
