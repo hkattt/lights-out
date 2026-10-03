@@ -1,2 +1,24 @@
-# anu-cssa-game-jam-2026
-GAME_NAME was created for the ANU CSSA Game Jam 2026
+# ANU CSSA Game Jam 2026
+
+## Overview 
+
+GAME_NAME was created for the ANU CSSA Game Jam 2026.
+
+## Project structure
+
+- https://youtu.be/V4SO7foDoW4?si=sWQKZhrNbSOF3_D_
+- https://youtu.be/5-Ev2ZIQgf4?si=GlAcqbo0Az4DlA7k
+
+## Tips
+
+- https://youtu.be/zLdTvkLsmgA?si=19OJIGoSL4FOnjQd
+- https://youtu.be/gVYeNZhROxM?si=lHiNlRXwIUjCxnFU
+- https://youtu.be/3EYi3Q8Y_dM?si=v72PXM3uJlqQxaK_
+
+
+## References
+- 2D Grid-based movement: https://www.peanuts-code.com/en/tutorials/gd0010_2d_grid_based_movement/
+- Tilemap: https://www.peanuts-code.com/en/tutorials/gd0024_tilemaplayer/
+
+## Assets
+- Hexnay's Rougelike Tiles. Licence: CC0 1.0 Universal. Retrieved from: https://hexany-ives.itch.io/hexanys-roguelike-tiles
