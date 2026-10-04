@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://ce6p8dcgks0k2"]
+
+[ext_resource type="Script" uid="uid://db2m6hxqaifva" path="res://scenes/systems/music_player/music_system.gd" id="1_d2pm7"]
+
+[node name="MusicSystem" type="Node2D" unique_id=452265225]
+script = ExtResource("1_d2pm7")
+
+[node name="MusicPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1729092641]
+unique_name_in_owner = true
