@@ -9,6 +9,8 @@ var character: Character      = null
 var _torch: Torch             = null
 var _door: Door               = null
 var _current_level: BaseLevel = null
+# Systems
+@onready var music_system: MusicSystem = %MusicSystem
 
 # Game world root notes
 @onready var level_root:  Node2D = %LevelRoot
@@ -21,7 +23,7 @@ var _current_level: BaseLevel = null
 @onready var transition_root: Control = %TransitionRoot
 @onready var debug_root:      Control = %DebugRoot
 
-# Transition screens
+# Transition screens 
 # TODO: Move elsewhere
 @onready var main_menu:  MainMenu   = %MainMenu
 @onready var lights_out: LightsOut  = %LightsOut
@@ -30,6 +32,7 @@ var _current_level: BaseLevel = null
 func _ready() -> void:
 	main_menu.start_game.connect(_on_start_game)
 	lights_out.retry_game.connect(_on_retry_game)
+	music_system.play_music(Enums.Music.OMINOUS)
 	
 func _on_start_game() -> void:
 	main_menu.hide()
