@@ -23,6 +23,11 @@ window/size/window_width_override=1024
 window/size/window_height_override=640
 window/stretch/mode="canvas_items"
 
+[global_group]
+
+torches=""
+character=""
+
 [input]
 
 move_up={

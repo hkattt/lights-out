@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://8n74garxg8c0"]
+
+[ext_resource type="Texture2D" uid="uid://88gun0pnsvpa" path="res://assets/tiles/items_transparent.png" id="1_e65ym"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_50ewd"]
+atlas = ExtResource("1_e65ym")
+region = Rect2(160, 48, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e65ym"]
+size = Vector2(16, 16)
+
+[sub_resource type="Gradient" id="Gradient_e65ym"]
+offsets = PackedFloat32Array(0, 0.6902655)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_e65ym"]
+gradient = SubResource("Gradient_e65ym")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.48290598, 0.47863248)
+
+[node name="Light" type="StaticBody2D" unique_id=481619374]
+texture_filter = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1289875071]
+texture_filter = 3
+texture = SubResource("AtlasTexture_50ewd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=734946716]
+shape = SubResource("RectangleShape2D_e65ym")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=552399328]
+texture = SubResource("GradientTexture2D_e65ym")

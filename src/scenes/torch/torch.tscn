@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dowddt5rfu0tm"]
+
+[ext_resource type="Texture2D" uid="uid://88gun0pnsvpa" path="res://assets/tiles/items_transparent.png" id="1_8kptu"]
+[ext_resource type="Script" uid="uid://b0vqutyf8i25m" path="res://scenes/torch/torch.gd" id="1_ano2b"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r4xay"]
+atlas = ExtResource("1_8kptu")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8kptu"]
+size = Vector2(16, 16)
+
+[node name="Torch" type="Area2D" unique_id=425378182 groups=["torches"]]
+script = ExtResource("1_ano2b")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=467515585]
+texture_filter = 3
+texture = SubResource("AtlasTexture_r4xay")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=570112152]
+shape = SubResource("RectangleShape2D_8kptu")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
