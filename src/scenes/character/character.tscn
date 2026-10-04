@@ -21,7 +21,7 @@ height = 256
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[node name="Character" type="CharacterBody2D" unique_id=409874960]
+[node name="Character" type="CharacterBody2D" unique_id=409874960 groups=["character"]]
 script = ExtResource("1_cuyo6")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=663590353]

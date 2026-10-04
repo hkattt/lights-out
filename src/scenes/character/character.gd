@@ -1,13 +1,15 @@
 class_name Character extends CharacterBody2D
 
+signal died
+
 @onready var torch: PointLight2D = %Torch
 
 # A dictionary that maps input map actions to direction vectors
 const inputs = {
 	"move_right": Vector2.RIGHT,
-	"move_left": Vector2.LEFT,
-	"move_down": Vector2.DOWN,
-	"move_up": Vector2.UP
+	"move_left":  Vector2.LEFT,
+	"move_down":  Vector2.DOWN,
+	"move_up":    Vector2.UP
 }
 
 # Stores the grid size, which is 16 (same as one tile)
@@ -17,8 +19,7 @@ var grid_size = 16
 @onready var ray_cast_2d: RayCast2D = $RayCast2D
 
 func _ready() -> void:
-	var tween: Tween = create_tween()
-	tween.tween_property(torch, "texture_scale", 0.1, 40.0)
+	torch.hide()
 
 # Calls the move function with the appropriate input key
 # if any input map action is triggered
@@ -35,3 +36,14 @@ func _move(action):
 	ray_cast_2d.force_raycast_update()
 	if not ray_cast_2d.is_colliding():
 		position += destination
+
+func start_torch() -> void:
+	torch.show()
+	var tween: Tween = create_tween()
+	tween.tween_property(torch, "texture_scale", 0.1, 40.0)
+	tween.finished.connect(_on_tween_finished)
+
+func _on_tween_finished() -> void:
+	died.emit()
+	torch.hide()
+	torch.texture_scale = 1.0

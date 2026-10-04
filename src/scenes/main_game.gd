@@ -1,10 +1,11 @@
 class_name MainGame extends Node
 
-const CHARACTER_SCENE_UID:  String = 'uid://dl2rclb50xt2d'
-const TEST_LEVEL_SCENE_UID: String = 'uid://dxx8qrh5r4343'
+const CHARACTER_SCENE_UID: String = 'uid://dl2rclb50xt2d'
+const TORCH_SCENE_UID:     String = 'uid://dowddt5rfu0tm'
+const MAZE_SCENE_UID:      String = 'uid://dxx8qrh5r4343'
 
 var character: Character = null
-
+var _torch: Torch = null
 var _current_level: BaseLevel = null
 
 # Game world root notes
@@ -20,7 +21,8 @@ var _current_level: BaseLevel = null
 
 func _ready() -> void:
 	_init_character()
-	_load_level(TEST_LEVEL_SCENE_UID)
+	_load_level(MAZE_SCENE_UID)
+	character.died.connect(_on_character_died)
 
 func _load_level(level_scene_uid: String) -> void:
 	_deferred_load_level.call_deferred(level_scene_uid)
@@ -51,14 +53,19 @@ func _deferred_load_level(level_scene_uid: String) -> void:
 	# Allow level to fully process before accessing it
 	await get_tree().process_frame
 	
+	_init_torch() # TODO: Figure out a nicer way to do this. This is cursed. 
+	_place_torch_at_level_spawn()
 	_place_character_at_level_spawn() 
-	
+
 func _init_character() -> void:
 	var character_scene: PackedScene = ResourceLoader.load(CHARACTER_SCENE_UID)
-	
 	character = character_scene.instantiate()
-	
 	entity_root.add_child(character)
+
+func _init_torch() -> void: 
+	var torch_scene: PackedScene = ResourceLoader.load(TORCH_SCENE_UID)
+	_torch = torch_scene.instantiate()
+	entity_root.add_child(_torch)
 
 func _place_character_at_level_spawn() -> void:
 	if character == null:
@@ -71,3 +78,20 @@ func _place_character_at_level_spawn() -> void:
 		# TODO: Make this fall back somewhere else
 	
 	character.global_position = _current_level.get_default_character_spawn()
+
+func _place_torch_at_level_spawn() -> void:
+	if _torch == null:
+		push_error('Cannot place torch in level because the torch is null')
+		return 
+		# TODO: Make this fall back somewhere else
+	if _current_level == null:
+		push_error('Cannot place torch in level because the current level is null')
+		return 
+		# TODO: Make this fall back somewhere else
+	
+	_torch.global_position = _current_level.get_default_torch_spawn()
+
+func _on_character_died() -> void:
+	_init_torch()
+	_place_torch_at_level_spawn()
+	_place_character_at_level_spawn()
