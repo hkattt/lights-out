@@ -1,5 +1,7 @@
 class_name Character extends CharacterBody2D
 
+@onready var torch: PointLight2D = %Torch
+
 # A dictionary that maps input map actions to direction vectors
 const inputs = {
 	"move_right": Vector2.RIGHT,
@@ -14,16 +16,20 @@ var grid_size = 16
 # Reference to the RayCast2D node
 @onready var ray_cast_2d: RayCast2D = $RayCast2D
 
+func _ready() -> void:
+	var tween: Tween = create_tween()
+	tween.tween_property(torch, "texture_scale", 0.1, 40.0)
+
 # Calls the move function with the appropriate input key
 # if any input map action is triggered
 func _unhandled_input(event):
 	for action in inputs.keys():
 		if event.is_action_pressed(action):
-			move(action)
+			_move(action)
 
 # Updates the direction of the RayCast2D according to the input key
 # and moves one grid if no collision is detected
-func move(action):
+func _move(action):
 	var destination = inputs[action] * grid_size
 	ray_cast_2d.target_position = destination
 	ray_cast_2d.force_raycast_update()

@@ -16,8 +16,8 @@ colors = PackedColorArray(1, 1, 1, 1, 0.72199166, 0.72199166, 0.72199166, 1, 0.3
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_cuyo6"]
 gradient = SubResource("Gradient_cuyo6")
-width = 128
-height = 128
+width = 256
+height = 256
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
@@ -39,6 +39,7 @@ target_position = Vector2(16, 0)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=370175038]
 
-[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1291971418]
+[node name="Torch" type="PointLight2D" parent="." unique_id=1291971418]
+unique_name_in_owner = true
 position = Vector2(8, 8)
 texture = SubResource("GradientTexture2D_cuyo6")
