@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://bs8l5n7swtixv"]
+
+[ext_resource type="Script" uid="uid://cdqom5u4a4rlh" path="res://scenes/transition_screens/lights_out/lights_out.gd" id="1_putay"]
+
+[node name="LightsOut" type="Control" unique_id=1801381090]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_putay")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1827564891]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1889654436]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1931854255]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1582655610]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "Lights out"
+
+[node name="Instructions" type="Label" parent="MarginContainer/VBoxContainer" unique_id=829480569]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "You failed to escape"
+
+[node name="RetryButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1332096107]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Try again"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]

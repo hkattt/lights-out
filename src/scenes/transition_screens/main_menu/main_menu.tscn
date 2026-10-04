@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://iteil77db07v"]
+
+[ext_resource type="Script" uid="uid://0hjoiljjf1y" path="res://scenes/transition_screens/main_menu/main_menu.gd" id="1_kx65a"]
+
+[node name="MainMenu" type="Control" unique_id=1792650135]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kx65a")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=249437865]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1011814521]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1113864536]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer" unique_id=762795915]
+layout_mode = 2
+text = "Lights out"
+
+[node name="Instructions" type="Label" parent="MarginContainer/VBoxContainer" unique_id=627145151]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Escape the maze before your torch burns out"
+
+[node name="StartButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1728627094]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Start escape"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]

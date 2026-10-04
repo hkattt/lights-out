@@ -40,7 +40,7 @@ func _move(action):
 func start_torch() -> void:
 	torch.show()
 	var tween: Tween = create_tween()
-	tween.tween_property(torch, "texture_scale", 0.1, 40.0)
+	tween.tween_property(torch, "texture_scale", 0.2, 150.0)
 	tween.finished.connect(_on_tween_finished)
 
 func _on_tween_finished() -> void:
