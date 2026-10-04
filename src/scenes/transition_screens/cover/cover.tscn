@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://bu61h578fvji6"]
+
+[ext_resource type="Texture2D" uid="uid://dqiy3sia8pc5l" path="res://assets/cover/cover-background.png" id="1_0fsif"]
+
+[node name="Cover" type="Control" unique_id=1709127826]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1287325380]
+layout_mode = 0
+offset_right = 1279.9999
+offset_bottom = 799.99994
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_0fsif")
+
+[node name="Label" type="Label" parent="." unique_id=1216427717]
+layout_mode = 0
+offset_left = 74.0
+offset_top = 50.0
+offset_right = 197.0
+offset_bottom = 84.0
+theme_override_font_sizes/font_size = 32
+text = "Lights out"
