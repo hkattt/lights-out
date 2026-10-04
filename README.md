@@ -2,7 +2,7 @@
 
 ## Overview 
 
-GAME_NAME was created for the ANU CSSA Game Jam 2026.
+Lights Out was created for the ANU CSSA Game Jam 2026.
 
 ## Project structure
 
@@ -24,3 +24,4 @@ GAME_NAME was created for the ANU CSSA Game Jam 2026.
 
 ## Assets
 - Hexnay's Rougelike Tiles. Licence: CC0 1.0 Universal. Retrieved from: https://hexany-ives.itch.io/hexanys-roguelike-tiles
+- Pixel Game Font Family. Free for non-commerical use. Retrieved from: https://www.1001fonts.com/pixel-game-font.html

@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://7yvtt6bft48w"]
+
+[ext_resource type="Texture2D" uid="uid://bgcpnglehr0vm" path="res://assets/tiles/general_transparent.png" id="1_bu3y2"]
+[ext_resource type="Script" uid="uid://do5q1v75a3e3s" path="res://scenes/door/door.gd" id="1_odsy8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q5p1p"]
+atlas = ExtResource("1_bu3y2")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bu3y2"]
+size = Vector2(16, 16)
+
+[node name="Door" type="Area2D" unique_id=150242442 groups=["door"]]
+texture_filter = 3
+script = ExtResource("1_odsy8")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1266746947]
+texture = SubResource("AtlasTexture_q5p1p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1229328116]
+shape = SubResource("RectangleShape2D_bu3y2")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -2,10 +2,12 @@ class_name MainGame extends Node
 
 const CHARACTER_SCENE_UID: String = 'uid://dl2rclb50xt2d'
 const TORCH_SCENE_UID:     String = 'uid://dowddt5rfu0tm'
+const DOOR_SCENE_UID:      String = 'uid://7yvtt6bft48w'
 const MAZE_SCENE_UID:      String = 'uid://dxx8qrh5r4343'
 
-var character: Character = null
-var _torch: Torch = null
+var character: Character      = null
+var _torch: Torch             = null
+var _door: Door               = null
 var _current_level: BaseLevel = null
 
 # Game world root notes
@@ -19,10 +21,30 @@ var _current_level: BaseLevel = null
 @onready var transition_root: Control = %TransitionRoot
 @onready var debug_root:      Control = %DebugRoot
 
+# Transition screens
+# TODO: Move elsewhere
+@onready var main_menu:  MainMenu   = %MainMenu
+@onready var lights_out: LightsOut  = %LightsOut
+@onready var escaped:    Control    = %Escaped
+
 func _ready() -> void:
+	main_menu.start_game.connect(_on_start_game)
+	lights_out.retry_game.connect(_on_retry_game)
+	
+func _on_start_game() -> void:
+	main_menu.hide()
 	_init_character()
 	_load_level(MAZE_SCENE_UID)
 	character.died.connect(_on_character_died)
+	
+func _on_retry_game() -> void:
+	lights_out.hide()
+	_init_torch()
+	_place_torch_at_level_spawn()
+	_place_character_at_level_spawn()
+
+func _on_escaped_maze() -> void:
+	escaped.show()
 
 func _load_level(level_scene_uid: String) -> void:
 	_deferred_load_level.call_deferred(level_scene_uid)
@@ -54,7 +76,9 @@ func _deferred_load_level(level_scene_uid: String) -> void:
 	await get_tree().process_frame
 	
 	_init_torch() # TODO: Figure out a nicer way to do this. This is cursed. 
+	_init_door()  # TODO: Figure out a nicer way to do this. This is cursed. 
 	_place_torch_at_level_spawn()
+	_place_door_at_level_spawn()
 	_place_character_at_level_spawn() 
 
 func _init_character() -> void:
@@ -66,6 +90,12 @@ func _init_torch() -> void:
 	var torch_scene: PackedScene = ResourceLoader.load(TORCH_SCENE_UID)
 	_torch = torch_scene.instantiate()
 	entity_root.add_child(_torch)
+
+func _init_door() -> void:
+	var door_scene: PackedScene = ResourceLoader.load(DOOR_SCENE_UID)
+	_door = door_scene.instantiate()
+	entity_root.add_child(_door)
+	_door.escaped_maze.connect(_on_escaped_maze)
 
 func _place_character_at_level_spawn() -> void:
 	if character == null:
@@ -90,8 +120,18 @@ func _place_torch_at_level_spawn() -> void:
 		# TODO: Make this fall back somewhere else
 	
 	_torch.global_position = _current_level.get_default_torch_spawn()
+	
+func _place_door_at_level_spawn() -> void:
+	if _torch == null:
+		push_error('Cannot place door in level because the torch is null')
+		return 
+		# TODO: Make this fall back somewhere else
+	if _current_level == null:
+		push_error('Cannot place door in level because the current level is null')
+		return 
+		# TODO: Make this fall back somewhere else
+	
+	_door.global_position = _current_level.get_default_door_spawn()
 
 func _on_character_died() -> void:
-	_init_torch()
-	_place_torch_at_level_spawn()
-	_place_character_at_level_spawn()
+	lights_out.show()
